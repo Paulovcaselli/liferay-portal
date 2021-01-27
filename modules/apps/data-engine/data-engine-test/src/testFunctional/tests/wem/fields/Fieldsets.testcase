@@ -48,32 +48,30 @@ definition {
 	@priority = "5"
 	test DuplicateFieldset {
 		property portal.acceptance = "false";
-		
+
 		ProductMenu.gotoPortlet(
-            category = "Content & Data",
-            panel = "Site Administration",
-            portlet = "Web Content"           
-        );
-        NavItem.gotoStructures();
-        
-        WebContentStructures.addCP(
-		    structureDescription = "DuplicateTest",
+			category = "Content & Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+		NavItem.gotoStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "DuplicateTest",
 			structureName = "DuplicateTest");
 
 		DataEngine.addFields(fieldNameList = "Text,Image,Upload");
 
 		WebContentStructures.saveCP(structureName = "DuplicateTest");
 
-        WebContentStructures.addCP(
-		    structureDescription = "DuplicateTest1",
+		WebContentStructures.addCP(
+			structureDescription = "DuplicateTest1",
 			structureName = "DuplicateTest1");
-        
-        DataEngine.addFieldsets(
+
+		DataEngine.addFieldsets(
 			fieldsetsLabel = "DuplicateTest",
 			fieldsetsName = "DuplicateTest");
 
-		
-        Click(locator1 = "//div[contains(@class,'fieldset')]//label[text()='DuplicateTest']");
+		Click(locator1 = "//div[contains(@class,'fieldset')]//label[text()='DuplicateTest']");
 
 		Click(
 			key_text = "DuplicateTest",
@@ -81,16 +79,15 @@ definition {
 
 		MenuItem.click(menuItem = "Duplicate");
 
-        AssertElementPresent(locator1 = "//div[contains(@class,'fieldset')]//label[text()='Copy of DuplicateTest']");
+		AssertElementPresent(locator1 = "//div[contains(@class,'fieldset')]//label[text()='Copy of DuplicateTest']");
 
-        AssertElementPresent(locator1 = "//label[contains(text(),'Copy of Text')]");
+		AssertElementPresent(locator1 = "//label[contains(text(),'Copy of Text')]");
 
-        AssertElementPresent(locator1 = "//label[contains(text(),'Copy of Image')]");
+		AssertElementPresent(locator1 = "//label[contains(text(),'Copy of Image')]");
 
-        AssertElementPresent(locator1 = "//label[contains(text(),'Copy of Upload')]");
+		AssertElementPresent(locator1 = "//label[contains(text(),'Copy of Upload')]");
 
-        WebContentStructures.saveCP(structureName = "DuplicateTest1");
-        
+		WebContentStructures.saveCP(structureName = "DuplicateTest1");
 	}
 
 	@description = "This is a test for LPS-107630. As an App Adm, I want to use an existing fieldset"
@@ -99,7 +96,63 @@ definition {
 	test EditFieldsetPropertiesFromSideBar {
 		property portal.acceptance = "false";
 
-		// TODO LPS-107630 EditFieldsetPropertiesFromSideBar pending implementation
+		ProductMenu.gotoPortlet(
+			category = "Content & Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		NavItem.gotoStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "EditFieldSetTest",
+			structureName = "EditFieldSetTest");
+
+		Navigator.gotoSidebarTab(tabName = "Builder");
+
+		Navigator.gotoNavTab(navTab = "Fieldsets");
+
+		Click(locator1 = "FormViewBuilder#CREATE_NEW_FIELD_SETS");
+
+		DoubleClick(locator1 = "Modal#CREATE_DATE_FIELD");
+
+		Type(
+			locator1 = "FormViewBuilder#FIELD_SET_NAME",
+			value1 = "EditFieldSetTest");
+
+		Click(locator1 = "Modal#SAVE_BUTTON");
+
+		DataEngine.addFieldsets(
+			fieldsetsLabel = "EditFieldSetTest",
+			fieldsetsName = "EditFieldSetTest");
+
+		WebContentStructures.saveCP(structureName = "EditFieldSetTest");
+
+		WebContentStructures.editStructureCP(structureName = "EditFieldSetTest");
+
+		Navigator.gotoNavTab(navTab = "Fieldsets");
+
+		Click(locator1 = "AppBuilder#BUTTON_EDIT_FIELDSET");
+
+		Click(
+			key_selectAction = "Edit",
+			locator1 = "FormViewBuilder#FIELD_ELLIPSIS_ACTION");
+
+		Click(locator1 = "Modal#CLICK_DATE_FIELD");
+
+		Type(
+			key_fieldLabel = "Label",
+			locator1 = "TextInput#GENERIC_TEXT_INPUT",
+			value1 = "NewDate");
+
+		Click(locator1 = "Modal#SAVE_BUTTON");
+
+		Click(locator1 = "Modal#PROPAGATE_BUTTON");
+
+		var key_fieldLabel = "NewDate";
+		
+		AssertTextEquals(
+			locator1 = "FormViewBuilder#ASSERT_FIELD_SET_NAME",
+			value1 = "NewDate");
 	}
 
 	@description = "This is a test for LPS-107630. As an App Adm, I want to use an existing fieldset"
@@ -109,24 +162,34 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-107630 FieldsetNameRenamedWhenNameAlreadyExistent pending implementation
-		ProductMenu.gotoPortlet(
-            category = "Content & Data",
-            panel = "Site Administration",
-            portlet = "Web Content"           
-        );
-        NavItem.gotoStructures();
-        WebContentStructures.addCP(
-		    structureDescription = "Reference Test",
-			structureName = "Reference Test");
-        DataEngine.addField(
-            field = "Text",
-            fieldFieldLabel = "Text",
-            fieldName = "Text");
-		DataEngine.addField(
-            field = "Text",
-            fieldFieldLabel = "Text",
-            fieldName = "Text");
 
+		//ProductMenu.gotoPortlet(
+		//category = "Content & Data",
+		//panel = "Site Administration",
+
+		// Portlet = "Web Content"
+
+		//);
+
+		//NavItem.gotoStructures();
+
+		//WebContentStructures.addCP(
+		//structureDescription = "Reference Test",
+		//	structureName = "Reference Test");
+
+		//DataEngine.addField(
+		//field = "Text",
+		//fieldFieldLabel = "Text",
+		//fieldName = "Text");
+
+		//DataEngine.addField(
+		//field = "Text",
+		//fieldFieldLabel = "Text",
+		//fieldName = "Text");
+
+		//AssertElementPresent(locator1 = "//div[contains(@data-field-name,'fieldReference')]//span[contains(text(), 'This reference is already')]");
+
+		//Pause(locator1 ="3000");
 	}
 
 	@description = "This is a test for LPS-107630. As an App Adm, I want to use an existing fieldset"
