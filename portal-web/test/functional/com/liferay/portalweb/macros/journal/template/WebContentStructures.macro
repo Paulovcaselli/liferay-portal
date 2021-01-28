@@ -111,7 +111,7 @@ definition {
 		}
 	}
 
-		macro editStructureCP {
+	macro editStructureCP {
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Edit",
 			rowEntry = "${structureName}");
