@@ -62,12 +62,45 @@ definition {
 	}
 
 	@description = "This is a test for LPS-123537. As Content Creator, I want to leverage the structures’ translations with nested field when creating a new Web Content"
-	@ignore = "true"
 	@priority = "4"
 	test DefaultTitleIsDisplayedUponLocaleChange {
-		property portal.acceptance = "false";
 
-		// TODO LPS-123537 DefaultTitleIsDisplayedUponLocaleChange pending implementation
+		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+
+		NavItem.gotoStructures();
+
+		WebContentStructures.addCP(structureName = "WC Structure Name");
+
+		DataEngine.addField(
+			fieldFieldLabel = "Text",
+			fieldName = "Text");
+
+		DataEngine.addFieldNested(
+			fieldFieldLabel = "Numeric",
+			fieldName = "Numeric",
+			targetFieldLabel = "Text");
+
+		WebContentStructures.saveCP(structureName = "WC Structure Name");
+
+		NavItem.gotoWebContent();
+
+		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
+
+		Click(locator1 = "TextInput#TITLE");
+
+		Type(
+			locator1 = "TextInput#TITLE",
+			value1 = "WC Structure Name");		
+
+		AssertTextEquals(
+			locator1 = "TextInput#TITLE",
+			value1 = "WC Structure Name");
+
+		PortletEntry.changeLocale(locale = "pt_BR");
+
+		AssertTextEquals(
+			locator1 = "TextInput#TITLE",
+			value1 = "WC Structure Name");	
 	}
 
 	@description = "This is a test for LPS-123537. As Content Creator, I want to leverage the structures’ translations with nested field when creating a new Web Content"
