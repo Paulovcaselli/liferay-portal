@@ -334,6 +334,20 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
+	macro addImageField {
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+
+		DMNavigator.gotoDocumentType();
+
+		LexiconEntry.gotoAdd();
+
+		PortletEntry.inputName(name = "DM Document Type Name");
+
+		DataEngine.addField(
+			fieldFieldLabel = "Image",
+			fieldName = "Image");
+	}
+
 	macro addMultipleCP {
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "Multiple Files Upload");
 
