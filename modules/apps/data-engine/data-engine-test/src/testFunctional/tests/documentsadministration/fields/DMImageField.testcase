@@ -435,22 +435,11 @@ definition {
 			locator1 = "DocumentsAndMediaDocument#METADATA_PANEL_IMAGE");
 	}
 
-	@description = "This is a test for LPS-98073. As a Developer, I want to Implement the image field type"
+	@description = "This is a test for LPS-98073. Verify if user can set the field as required or not"
 	@priority = "4"
 	test VerifyRequiredPropertyOfImageField {
-		property portal.acceptance = "false";
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
-
-		DMNavigator.gotoDocumentType();
-
-		LexiconEntry.gotoAdd();
-
-		PortletEntry.inputName(name = "DM Document Type Name");
-
-		DataEngine.addField(
-			fieldFieldLabel = "Image",
-			fieldName = "Image");
+		DMDocument.addImageField();
 
 		DataEngine.editFieldRequired(fieldFieldLabel = "Image");
 
