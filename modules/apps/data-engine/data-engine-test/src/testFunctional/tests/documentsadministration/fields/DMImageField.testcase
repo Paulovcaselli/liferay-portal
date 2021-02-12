@@ -111,10 +111,9 @@ definition {
 		}
 	}
 
-	@description = "This is a test for LPS-98073. As a Developer, I want to Implement the image field type"
+	@description = "This is a test for LPS-98073. Verify if label and field name from image field can be translated"
 	@priority = "5"
 	test LocalizationOfImageFieldtPersists {
-		property portal.acceptance = "false";
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
