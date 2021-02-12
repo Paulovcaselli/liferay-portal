@@ -18,18 +18,17 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
-			DMDocument.tearDownCP();
+			//DMDocument.tearDownCP();
 
-			DMMetadataSet.tearDownCP();
+			//DMMetadataSet.tearDownCP();
 
 			User.logoutPG();
 		}
 	}
 
-	@description = "This is a test for LPS-98073. As a Developer, I want to Implement the image field type"
+	@description = "This is a test for LPS-98073. Verify if user can clear the uploaded image from form by clicking on Clear button"
 	@priority = "4"
 	test ClearUploadedImage {
-		property portal.acceptance = "false";
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
