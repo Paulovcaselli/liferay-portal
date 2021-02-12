@@ -18,9 +18,9 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
-			DMDocument.tearDownCP();
+			//DMDocument.tearDownCP();
 
-			DMMetadataSet.tearDownCP();
+			//DMMetadataSet.tearDownCP();
 
 			User.logoutPG();
 		}
@@ -161,10 +161,9 @@ definition {
 			value1 = "Imagen");
 	}
 
-	@description = "This is a test for LPS-98073. As a Developer, I want to Implement the image field type"
+	@description = "This is a test for LPS-98073. Verify if user is required to define a description for an uploaded image"
 	@priority = "3"
 	test SaveUploadedImageWithoutDescription {
-		property portal.acceptance = "false";
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
