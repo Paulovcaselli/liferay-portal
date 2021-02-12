@@ -18,6 +18,7 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
+
 			//DMDocument.tearDownCP();
 
 			//DMMetadataSet.tearDownCP();
@@ -29,7 +30,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can clear the uploaded image from form by clicking on Clear button"
 	@priority = "4"
 	test ClearUploadedImage {
-
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		DMNavigator.gotoDocumentType();
@@ -76,7 +76,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can drag and drop image field into form builder"
 	@priority = "5"
 	test DragAndDropImageFieldToBuilder {
-
 		DMDocument.addImageField();
 
 		DDLDataDefinition.save();
@@ -93,7 +92,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can duplicate the image field"
 	@priority = "4"
 	test DuplicateImageField {
-
 		DMDocument.addImageField();
 
 		DataEngine.duplicate(fieldFieldLabel = "Image");
@@ -114,7 +112,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if label and field name from image field can be translated"
 	@priority = "5"
 	test LocalizationOfImageFieldtPersists {
-
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		DMNavigator.gotoDocumentType();
@@ -164,7 +161,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user is required to define a description for an uploaded image"
 	@priority = "3"
 	test SaveUploadedImageWithoutDescription {
-
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		DMNavigator.gotoDocumentType();
@@ -202,7 +198,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can define a field Reference"
 	@priority = "4"
 	test SetFieldReferenceOfImageField {
-
 		DMDocument.addImageField();
 
 		DDLDataDefinition.save();
@@ -227,7 +222,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can define a help text"
 	@priority = "4"
 	test SetHelpTextOfImageField {
-
 		DMDocument.addImageField();
 
 		DataEngine.editFieldTip(
@@ -249,7 +243,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can define a description for the uploaded image"
 	@priority = "4"
 	test SetImageDescriptionOnDM {
-
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		DMNavigator.gotoDocumentType();
@@ -288,7 +281,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can set the image field as repeatable"
 	@priority = "4"
 	test SetImageFieldAsRepeatable {
-
 		DMDocument.addImageField();
 
 		DataEngine.editFieldRepeatable(fieldFieldLabel = "Image");
@@ -317,7 +309,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can add a field label"
 	@priority = "5"
 	test SetLabelOfImageField {
-
 		DMDocument.addImageField();
 
 		FormViewBuilder.editFieldLabel(
@@ -338,7 +329,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can show/hide label"
 	@priority = "4"
 	test ShowAndHideImageFieldLabel {
-
 		DMDocument.addImageField();
 
 		DataEngine.editShowOrHideLabel(
@@ -359,7 +349,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can upload an image from Liferay Documents and Media"
 	@priority = "5"
 	test UploadImageFromDocumentsAndMedia {
-
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentTitle = "Document_1.jpg",
 			groupName = "Guest",
@@ -388,7 +377,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can upload an image from local storage"
 	@priority = "5"
 	test UploadImageFromLocalStorage {
-
 		DMDocument.addImageField();
 
 		DDLDataDefinition.save();
@@ -411,7 +399,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user is not allowed to upload a file that is not an image"
 	@priority = "4"
 	test UploadInvalidFile {
-
 		DMDocument.addImageField();
 
 		DDLDataDefinition.save();
@@ -438,7 +425,6 @@ definition {
 	@description = "This is a test for LPS-98073. Verify if user can set the field as required or not"
 	@priority = "4"
 	test VerifyRequiredPropertyOfImageField {
-
 		DMDocument.addImageField();
 
 		DataEngine.editFieldRequired(fieldFieldLabel = "Image");
