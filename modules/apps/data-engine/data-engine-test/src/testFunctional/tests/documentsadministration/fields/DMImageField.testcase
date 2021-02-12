@@ -73,7 +73,7 @@ definition {
 			locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_IMAGE_PREVIEW");
 	}
 
-	@description = "This is a test for LPS-98073. As a Developer, I want to Implement the image field type"
+	@description = "This is a test for LPS-98073. Verify if user can drag and drop image field into form builder"
 	@priority = "5"
 	test DragAndDropImageFieldToBuilder {
 
@@ -90,7 +90,7 @@ definition {
 			fieldName = "Image");
 	}
 
-	@description = "This is a test for LPS-98073. As a Developer, I want to Implement the image field type"
+	@description = "This is a test for LPS-98073. Verify if user can duplicate the image field"
 	@priority = "4"
 	test DuplicateImageField {
 
