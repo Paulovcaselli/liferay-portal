@@ -19,9 +19,9 @@ definition {
 		}
 		else {
 
-			//DMDocument.tearDownCP();
+			DMDocument.tearDownCP();
 
-			//DMMetadataSet.tearDownCP();
+			DMMetadataSet.tearDownCP();
 
 			User.logoutPG();
 		}
