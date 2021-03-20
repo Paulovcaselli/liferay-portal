@@ -1275,7 +1275,6 @@ public class GraphQLServletExtender {
 
 			objectMapperBuilder.withGraphQLErrorHandler(
 				new LiferayGraphQLErrorHandler());
-
 			objectMapperBuilder.withObjectMapperProvider(
 				() -> {
 					ObjectMapper objectMapper = new ObjectMapper();
