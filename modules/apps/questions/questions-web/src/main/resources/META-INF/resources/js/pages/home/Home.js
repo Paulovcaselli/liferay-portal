@@ -69,7 +69,8 @@ export default withRouter(({history}) => {
 					<>
 						{sections &&
 							sections.actions &&
-							sections.actions.create &&
+							!!sections.actions.create &&
+							sections.items &&
 							sections.items.length > 0 && (
 								<div className="c-mb-4 col-lg-4 col-md-6 col-xl-3">
 									<div className="questions-card text-decoration-none text-secondary">
@@ -101,7 +102,8 @@ export default withRouter(({history}) => {
 								</div>
 							)}
 
-						{(sections.items.length > 0 &&
+						{(sections.items &&
+							sections.items.length > 0 &&
 							sections.items.map((section) => (
 								<div
 									className="c-mb-4 col-lg-4 col-md-6 col-xl-3"
@@ -170,16 +172,18 @@ export default withRouter(({history}) => {
 									'this-page-has-no-topics'
 								)}
 							>
-								{sections && sections.actions.create && (
-									<ClayButton
-										displayType="primary"
-										onClick={() =>
-											setTopicModalVisibility(true)
-										}
-									>
-										{Liferay.Language.get('new-topic')}
-									</ClayButton>
-								)}
+								{sections &&
+									sections.actions &&
+									!!sections.actions.create && (
+										<ClayButton
+											displayType="primary"
+											onClick={() =>
+												setTopicModalVisibility(true)
+											}
+										>
+											{Liferay.Language.get('new-topic')}
+										</ClayButton>
+									)}
 							</ClayEmptyState>
 						)}
 					</>

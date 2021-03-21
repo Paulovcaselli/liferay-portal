@@ -144,8 +144,7 @@ export default withRouter(
 				getSectionsByRootSection(context.siteKey, context.rootTopicId)
 					.then(({data}) => {
 						setAllowCreateTopicInRootTopic(
-							(data.actions && data.actions.create && true) ||
-								false
+							data.actions && !!data.actions.create
 						);
 					})
 					.catch((error) => {
@@ -326,22 +325,18 @@ export default withRouter(
 											'this-topic-is-empty'
 										)}
 									>
-										{(context.redirectToLogin &&
-											section &&
-											section.actions &&
-											section.actions['add-thread']) ||
-											(context.canCreateThread && (
-												<ClayButton
-													displayType="primary"
-													onClick={
-														navigateToNewQuestion
-													}
-												>
-													{Liferay.Language.get(
-														'ask-question'
-													)}
-												</ClayButton>
-											))}
+										{((context.redirectToLogin &&
+											!themeDisplay.isSignedIn()) ||
+											context.canCreateThread) && (
+											<ClayButton
+												displayType="primary"
+												onClick={navigateToNewQuestion}
+											>
+												{Liferay.Language.get(
+													'ask-question'
+												)}
+											</ClayButton>
+										)}
 									</ClayEmptyState>
 								) : (
 									<ClayEmptyState
@@ -491,10 +486,13 @@ export default withRouter(
 								{sectionTitle &&
 									questions &&
 									questions.totalCount > 0 &&
-									(context.redirectToLogin ||
+									((context.redirectToLogin &&
+										!themeDisplay.isSignedIn()) ||
 										(section &&
 											section.actions &&
-											section.actions['add-thread']) ||
+											Boolean(
+												section.actions['add-thread']
+											)) ||
 										context.canCreateThread) && (
 										<ClayInput.GroupItem shrink>
 											<ClayButton
