@@ -1518,6 +1518,89 @@ definition {
 		AppBuilderAdmin.validateItemNameOnTable(itemName = "Content of form deployed as widget.");
 	}
 
+	@description = "The visual properties are overwritten and not propagated to the other Form Views"
+	@priority = "5"
+	test FieldLabelsAreShownAcoordingToTheCurrentFormViewOnRulesSummary {
+		property portal.acceptance = "quarantine";
+
+		var ageFormView1 = "Age FV1";
+		var ageFormView2 = "Age FV2";
+		var formView1 = "Form View 1";
+		var formView2 = "Form View 2";
+		var fullnameFormView1 = "Full Name FV1";
+		var fullnameFormView2 = "Full Name FV2";
+		var onlyForThisForm = "Label for Only This Form";
+
+		AppBuilderAdmin.addCustomObject(
+			customObjectName = "my custom object",
+			isCreatingFormView = "true",
+			isCreatingViaPlusIcon = "true");
+
+		FormViewBuilder.setName(formViewName = "${formView1}");
+
+		FormViewBuilder.addFieldByDoubleClick(fieldType = "Text");
+
+		FormViewBuilder.setFieldLabelWithNoAssertion(fieldLabel = "${fullnameFormView1}");
+
+		FormViewBuilder.closeSidebar();
+
+		FormViewBuilder.addFieldByDoubleClick(fieldType = "Numeric");
+
+		FormViewBuilder.setFieldLabelWithNoAssertion(fieldLabel = "${ageFormView1}");
+
+		FormViewBuilder.save();
+
+		AppBuilderAdmin.add();
+
+		FormViewBuilder.setName(formViewName = "${formView2}");
+
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${ageFormView1}");
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${ageFormView1}");
+
+		FormViewBuilder.clickFieldLabelActionMenu();
+
+		FormViewBuilder.clickFieldLabelScope(fieldLabelScope = "${onlyForThisForm}");
+
+		FormViewBuilder.setFieldLabelWithNoAssertion(fieldLabel = "${ageFormView2}");
+
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${fullnameFormView1}");
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${fullnameFormView1}");
+
+		FormViewBuilder.clickFieldLabelActionMenu();
+
+		FormViewBuilder.clickFieldLabelScope(fieldLabelScope = "${onlyForThisForm}");
+
+		FormViewBuilder.setFieldLabelWithNoAssertion(fieldLabel = "${fullnameFormView2}");
+
+		FormViewBuilder.gotoRules();
+
+		FormViewBuilder.addRule();
+
+		FormViewBuilder.editRuleName(ruleName = "Rule Form View 2");
+
+		FormRules.configureConditionOptions(
+			conditionField = "${fullnameFormView2}",
+			conditionOperator = "Is not empty",
+			conditionRowNumber = "1");
+
+		FormRules.configureActionOptions(
+			action = "Show",
+			actionRowNumber = "1",
+			actionTarget = "${ageFormView2}");
+
+		FormViewBuilder.ruleSave();
+
+		FormViewBuilder.clickRuleSidebar();
+
+		FormViewBuilder.validateRuleSummary(
+			action = "Show",
+			condition = "Is Not Empty",
+			firstField = "${fullnameFormView2}",
+			secondField = "${ageFormView2}");
+	}
+
 	@description = "Clear search results when clicking the Clear button on the search results banner"
 	@priority = "5"
 	test FormViewClearSearchResults {
@@ -4773,6 +4856,49 @@ definition {
 		FormViewBuilder.switchToBacisTab();
 
 		FormViewBuilder.validateShowAsSwitcherIsON();
+
+		AppBuilderAdmin.cancel();
+
+		AppBuilderAdmin.add();
+
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${age}");
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${country}");
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${maritalStatus}");
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${nameFormView1}");
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${since}");
+		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "${teams}");
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${nameFormView1}");
+
+		FormViewBuilder.validateFieldLabelAtSidebar(fieldLabel = "${nameFormView1}");
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${age}");
+
+		FormViewBuilder.assertPlaceholderTextAtSidebar(placeHolder = "${agePlaceholderFormView2}");
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${country}");
+
+		FormViewBuilder.assertHelpTextPresent(
+			fieldName = "${country}",
+			fieldValue = "${countryHelpTextFormView2}");
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${since}");
+
+		FormViewBuilder.switchToAdvancedTab();
+
+		FormViewBuilder.assertPredefinedValueAtSidebar(predefinedValue = "${sincePredefinedDateFormView2}");
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${maritalStatus}");
+
+		FormViewBuilder.validateShowLabelIsOn();
+
+		FormViewBuilder.clickFieldLabel(fieldLabel = "${teams}");
+
+		FormViewBuilder.validateInlineOptionIsSetOFF();
+
+		FormViewBuilder.switchToBacisTab();
+
+		FormViewBuilder.validateShowAsSwitcherIsOFF();
 	}
 
 }

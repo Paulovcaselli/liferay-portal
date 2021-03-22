@@ -77,6 +77,12 @@
 </tr>
 
 <tr>
+	<td>FIELD_LABEL_UPDATED_AT_SIDEBAR</td>
+	<td>//div[@class='form-group form-renderer-label-field__input']//input</td>
+	<td></td>
+</tr>
+
+<tr>
 	<td>FIELD_VALUE</td>
 	<td>//input[contains (@name,'${key_fieldType}') and @value='${fieldLabel}']</td>
 	<td></td>

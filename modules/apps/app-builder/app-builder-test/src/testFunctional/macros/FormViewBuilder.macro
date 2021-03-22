@@ -230,6 +230,10 @@ definition {
 		Click(locator1 = "FormViewBuilder#FORM_FIELD_REQUIRED_ELLIPSES");
 	}
 
+	macro clickRuleSidebar {
+		Click(locator1 = "FormViewBuilder#EDIT_RULE_COLLAPSE");
+	}
+
 	macro clickShowAsSwitcher {
 		Click(locator1 = "FormViewBuilder#SIDEBAR_BASIC_SHOW_AS_SWITCHER");
 	}
@@ -828,6 +832,12 @@ definition {
 			value1 = "${fieldLabel}");
 	}
 
+	macro validateFieldLabelAtSidebar {
+		AssertTextEquals(
+			locator1 = "FormViewBuilder#FIELD_LABEL_UPDATED_AT_SIDEBAR",
+			value1 = "${fieldLabel}");
+	}
+
 	macro validateFieldLabelIsNotShown {
 		AssertElementNotPresent(locator1 = "FormViewBuilder#FIELD_LABEL");
 	}
@@ -846,6 +856,10 @@ definition {
 		AssertTextEquals(
 			locator1 = "FormViewBuilder#FIELD_LABEL_MULTIPLE_SELECTION",
 			value1 = "${fieldLabel}");
+	}
+
+	macro validateInlineOptionIsSetOFF {
+		IsNotChecked(locator1 = "FormViewBuilder#SIDEBAR_ADVANCED_INLINE");
 	}
 
 	macro validateInlineOptionIsSetOn {
@@ -964,6 +978,10 @@ definition {
 		AssertTextEquals(
 			locator1 = "FormViewBuilder#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "${optionValue}");
+	}
+
+	macro validateShowAsSwitcherIsOFF {
+		IsNotChecked(locator1 = "FormViewBuilder#SIDEBAR_BASIC_SHOW_AS_SWITCHER");
 	}
 
 	macro validateShowAsSwitcherIsON {
