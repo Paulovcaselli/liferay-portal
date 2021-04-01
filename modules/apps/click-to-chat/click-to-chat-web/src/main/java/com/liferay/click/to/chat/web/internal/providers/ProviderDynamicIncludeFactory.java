@@ -43,6 +43,9 @@ public class ProviderDynamicIncludeFactory {
 			else if (provider.equals(ProviderOptions.TOLVNOW)) {
 				return new TolvNowDynamicInclude(providerAccountToken, user);
 			}
+			else if (provider.equals(ProviderOptions.LIVECHAT)) {
+				return new LiveChatDynamicInclude(providerAccountToken, user);
+			}
 		}
 
 		return null;

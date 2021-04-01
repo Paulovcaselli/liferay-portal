@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 public enum ProviderOptions {
 
-	CHATWOOT("CHATWOOT"), CRISP("CRISP"), JIVOCHAT("JIVOCHAT"),
+	CHATWOOT("CHATWOOT"), CRISP("CRISP"), JIVOCHAT("JIVOCHAT"), LIVECHAT("LIVECHAT"),
 	LIVEPERSON("LIVEPERSON"), SMARTSUPP("SMARTSUPP"), TIDIO("TIDIO"), TOLVNOW("TOLVNOW");
 
 	public static ProviderOptions parse(String value) {
