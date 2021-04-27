@@ -18,7 +18,9 @@ definition {
 			PortalInstances.tearDownCP();
 		}
 		else {
-			User.logoutPG();
+			ClickToChat.tearDownCTC();
+
+			User.logoutPG();			
 		}
 	}
 
@@ -119,6 +121,126 @@ definition {
 	}
 
 	@priority = "5"
+	test DisableLiveChat {
+		property osgi.module.configuration.file.names = "com.liferay.click.to.chat.web.internal.configuration.ClickToChatConfiguration.config";
+		property osgi.module.configurations = "chatProviderAccountId=&quot;${click.to.chat.livechat.password}&quot;${line.separator}chatProviderId=&quot;livechat&quot;${line.separator}enabled=&quot;true&quot;${line.separator}guestUsersAllowed=&quot;false&quot;${line.separator}siteSettingsStrategy=&quot;always-inherit&quot;";
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.disableCheckbox(fieldName = "enabled");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementNotPresent(locator1 = "Providers#CHAT_LIVECHAT");
+	}
+
+	@priority = "5"
+	test DisableSmartsupp {
+		property osgi.module.configuration.file.names = "com.liferay.click.to.chat.web.internal.configuration.ClickToChatConfiguration.config";
+		property osgi.module.configurations = "chatProviderAccountId=&quot;${click.to.chat.smartsupp.password}&quot;${line.separator}chatProviderId=&quot;smartsupp&quot;${line.separator}enabled=&quot;true&quot;${line.separator}guestUsersAllowed=&quot;false&quot;${line.separator}siteSettingsStrategy=&quot;always-inherit&quot;";
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.disableCheckbox(fieldName = "enabled");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementNotPresent(locator1 = "Providers#CHAT_SMARTSUPP");
+	}
+
+	@priority = "5"
+	test DisableTidio {
+		property osgi.module.configuration.file.names = "com.liferay.click.to.chat.web.internal.configuration.ClickToChatConfiguration.config";
+		property osgi.module.configurations = "chatProviderAccountId=&quot;${click.to.chat.tidio.password}&quot;${line.separator}chatProviderId=&quot;tidio&quot;${line.separator}enabled=&quot;true&quot;${line.separator}guestUsersAllowed=&quot;false&quot;${line.separator}siteSettingsStrategy=&quot;always-inherit&quot;";
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.disableCheckbox(fieldName = "enabled");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementNotPresent(locator1 = "Providers#CHAT_TIDIO");
+	}
+
+	@priority = "5"
+	test DisableTolvNow {
+		property osgi.module.configuration.file.names = "com.liferay.click.to.chat.web.internal.configuration.ClickToChatConfiguration.config";
+		property osgi.module.configurations = "chatProviderAccountId=&quot;${click.to.chat.tolvnow.password}&quot;${line.separator}chatProviderId=&quot;tolvnow&quot;${line.separator}enabled=&quot;true&quot;${line.separator}guestUsersAllowed=&quot;false&quot;${line.separator}siteSettingsStrategy=&quot;always-inherit&quot;";
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.disableCheckbox(fieldName = "enabled");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementNotPresent(locator1 = "Providers#CHAT_TOLVNOW");
+	}
+
+	@priority = "5"
+	test DisableZendesk {
+		property osgi.module.configuration.file.names = "com.liferay.click.to.chat.web.internal.configuration.ClickToChatConfiguration.config";
+		property osgi.module.configurations = "chatProviderAccountId=&quot;${click.to.chat.zendesk.password}&quot;${line.separator}chatProviderId=&quot;zendesk&quot;${line.separator}enabled=&quot;true&quot;${line.separator}guestUsersAllowed=&quot;false&quot;${line.separator}siteSettingsStrategy=&quot;always-inherit&quot;";
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.disableCheckbox(fieldName = "enabled");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementNotPresent(locator1 = "Providers#CHAT_ZENDESK");
+	}
+
+	@priority = "5"
 	test EnableChatWoot {
 		ApplicationsMenu.gotoPortlet(
 			category = "Configuration",
@@ -142,7 +264,7 @@ definition {
 
 		FormFields.editText(
 			fieldName = "chatProviderAccountId",
-			fieldValue = "${click.to.chat.chatwoot.password}");
+			fieldValue = "11cNMFSLN5QZmSpNnxh7bPZK");
 
 		SystemSettings.saveConfiguration();
 
@@ -282,6 +404,138 @@ definition {
 
 		AssertElementPresent(locator1 = "Providers#CHAT_LIVEPERSON");
 	}
+
+	@priority = "5"
+	test EnableSmartsupp {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.enableCheckbox(fieldName = "enabled");
+
+		FormFields.selectSelectOption(
+			fieldName = "siteSettingsStrategy",
+			selectOption = "Always Inherit");
+
+		FormFields.selectSelectOption(
+			fieldName = "chatProviderId",
+			selectOption = "Smartsupp");
+
+		FormFields.editText(
+			fieldName = "chatProviderAccountId",
+			fieldValue = "${click.to.chat.smartsupp.password}");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementPresent(locator1 = "Providers#CHAT_SMARTSUPP");
+	}
+
+	@priority = "5"
+	test EnableTidio {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.enableCheckbox(fieldName = "enabled");
+
+		FormFields.selectSelectOption(
+			fieldName = "siteSettingsStrategy",
+			selectOption = "Always Inherit");
+
+		FormFields.selectSelectOption(
+			fieldName = "chatProviderId",
+			selectOption = "Tidio");
+
+		FormFields.editText(
+			fieldName = "chatProviderAccountId",
+			fieldValue = "${click.to.chat.tidio.password}");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementPresent(locator1 = "Providers#CHAT_TIDIO");
+	}	
+
+	@priority = "5"
+	test EnableTolvNow {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.enableCheckbox(fieldName = "enabled");
+
+		FormFields.selectSelectOption(
+			fieldName = "siteSettingsStrategy",
+			selectOption = "Always Inherit");
+
+		FormFields.selectSelectOption(
+			fieldName = "chatProviderId",
+			selectOption = "Tolvnow");
+
+		FormFields.editText(
+			fieldName = "chatProviderAccountId",
+			fieldValue = "${click.to.chat.tolvnow.password}");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementPresent(locator1 = "Providers#CHAT_TOLVNOW");
+	}
+
+	@priority = "5"
+	test EnableZendesk {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+		FormFields.enableCheckbox(fieldName = "enabled");
+
+		FormFields.selectSelectOption(
+			fieldName = "siteSettingsStrategy",
+			selectOption = "Always Inherit");
+
+		FormFields.selectSelectOption(
+			fieldName = "chatProviderId",
+			selectOption = "Zendesk");
+
+		FormFields.editText(
+			fieldName = "chatProviderAccountId",
+			fieldValue = "${click.to.chat.zendesk.password}");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openURL();
+
+		AssertElementPresent(locator1 = "Providers#CHAT_ZENDESK");
+	}	
 
 	@priority = "4"
 	test HideChatProvider {

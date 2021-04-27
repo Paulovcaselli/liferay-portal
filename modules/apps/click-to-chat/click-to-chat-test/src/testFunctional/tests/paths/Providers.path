@@ -25,12 +25,32 @@
 </tr>
 <tr>
 	<td>CHAT_LIVECHAT</td>
-	<td>//button[contains(@aria-label, 'LiveChat')]</td>
+	<td>//div[contains(@id, 'chat-widget-container')]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>CHAT_LIVEPERSON</td>
 	<td>//div[contains(@id,'LPMcontainer')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CHAT_SMARTSUPP</td>
+	<td>//iframe[contains(@title, 'Smartsupp')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CHAT_TIDIO</td>
+	<td>//body[contains(@class, 'awesome-iframe')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CHAT_TOLVNOW</td>
+	<td>//span[contains(@id, 'tolvnow')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CHAT_ZENDESK</td>
+	<td>//iframe[contains(@id, 'launcher')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -41,6 +61,16 @@
 <tr>
 	<td>CHAT_PROVIDERS_REQUIRED</td>
 	<td>//div[contains(@data-field-name, 'chatProviderId')]//span[contains(@class, 'required')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERTICAL_ELLIPSIS</td>
+	<td>//div[contains(@class,'float-right')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTION_VERTICAL_ELLIPSIS</td>
+	<td>//div[contains(@class,'lfr-icon-menu-open')]//span[contains(.,'${action}')]</td>
 	<td></td>
 </tr>
 </tbody>

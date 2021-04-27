@@ -1,0 +1,27 @@
+definition {
+
+    macro actionsClickToChat {
+        var key_action = "${action}";
+
+        Click(locator1 = "Providers#VERTICAL_ELLIPSIS");
+
+        Click(locator1 = "Providers#ACTION_VERTICAL_ELLIPSIS");        
+    }
+
+    macro tearDownCTC {
+        ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Instance Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Click to Chat",
+			configurationName = "Click to Chat Configuration",
+			configurationScope = "Virtual Instance Scope");
+
+        ClickToChat.actionsClickToChat(
+            action = "Reset Default Values"
+        );
+    }
+
+} 
