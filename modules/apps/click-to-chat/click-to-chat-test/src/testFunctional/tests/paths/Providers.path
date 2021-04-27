@@ -9,8 +9,23 @@
 </thead>
 <tbody>
 <tr>
+	<td>CHAT_CHATWOOT</td>
+	<td>//div[contains(@class, 'woot--bubble-holder')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CHAT_CRISP</td>
+	<td>//div[contains(@id, 'crisp-chatbox')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>CHAT_JIVOCHAT</td>
 	<td>//div[contains(@id,'jivo-iframe-container')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CHAT_LIVECHAT</td>
+	<td>//button[contains(@aria-label, 'LiveChat')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -21,6 +36,11 @@
 <tr>
 	<td>CHAT_PROVIDERS_HIDE</td>
 	<td>//div[contains(@class, 'position-relative row')]//div[contains(@data-field-name, 'chatProviderId')]/div[contains(@class, 'hide')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CHAT_PROVIDERS_REQUIRED</td>
+	<td>//div[contains(@data-field-name, 'chatProviderId')]//span[contains(@class, 'required')]</td>
 	<td></td>
 </tr>
 </tbody>
