@@ -264,7 +264,7 @@ definition {
 
 		FormFields.editText(
 			fieldName = "chatProviderAccountId",
-			fieldValue = "11cNMFSLN5QZmSpNnxh7bPZK");
+			fieldValue = "${click.to.chat.chatwoot.password}");
 
 		SystemSettings.saveConfiguration();
 
