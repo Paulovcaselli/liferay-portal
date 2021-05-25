@@ -15,6 +15,7 @@
 import ClayButton from '@clayui/button';
 import ClayForm from '@clayui/form';
 import ClayIcon from '@clayui/icon';
+import ClayLabel from '@clayui/label';
 import ClayNavigationBar from '@clayui/navigation-bar';
 import classNames from 'classnames';
 import {useMutation} from 'graphql-hooks';
@@ -140,8 +141,8 @@ export default withRouter(
 				  question.messageBoardSection.title;
 
 		useEffect(() => {
-			document.title = questionId;
-		}, [questionId]);
+			document.title = (question && question.title) || questionId;
+		}, [question, questionId]);
 
 		useEffect(() => {
 			fetchMessages();
@@ -246,6 +247,16 @@ export default withRouter(
 											)}
 										>
 											{question.headline}
+
+											{question.status &&
+												question.status !==
+													'approved' && (
+													<span className="c-ml-2">
+														<ClayLabel displayType="info">
+															{question.status}
+														</ClayLabel>
+													</span>
+												)}
 
 											{!!question.locked && (
 												<span className="c-ml-2">
@@ -424,6 +435,7 @@ export default withRouter(
 								</div>
 
 								{question &&
+									question.status !== 'pending' &&
 									question.actions &&
 									question.actions['reply-to-thread'] && (
 										<div className="c-mt-5">
@@ -524,15 +536,17 @@ export default withRouter(
 					)}
 				</div>
 
-				<Helmet>
-					<title>${questionId}</title>
-					<link
-						href={`${getFullPath('questions')}${
-							context.historyRouterBasePath ? '' : '#/'
-						}questions/${sectionTitle}/${questionId}`}
-						rel="canonical"
-					/>
-				</Helmet>
+				{question && (
+					<Helmet>
+						<title>{question.headline}</title>
+						<link
+							href={`${getFullPath('questions')}${
+								context.historyRouterBasePath ? '' : '#/'
+							}questions/${sectionTitle}/${questionId}`}
+							rel="canonical"
+						/>
+					</Helmet>
+				)}
 			</section>
 		);
 	}

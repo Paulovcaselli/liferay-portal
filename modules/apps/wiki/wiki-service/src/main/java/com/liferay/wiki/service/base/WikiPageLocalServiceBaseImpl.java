@@ -163,6 +163,13 @@ public abstract class WikiPageLocalServiceBaseImpl
 	}
 
 	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
+	}
+
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -264,48 +271,6 @@ public abstract class WikiPageLocalServiceBaseImpl
 	@Override
 	public WikiPage fetchWikiPageByUuidAndGroupId(String uuid, long groupId) {
 		return wikiPagePersistence.fetchByUUID_G(uuid, groupId);
-	}
-
-	/**
-	 * Returns the wiki page with the matching external reference code and group.
-	 *
-	 * @param groupId the primary key of the group
-	 * @param externalReferenceCode the wiki page's external reference code
-	 * @return the matching wiki page, or <code>null</code> if a matching wiki page could not be found
-	 */
-	@Override
-	public WikiPage fetchWikiPageByExternalReferenceCode(
-		long groupId, String externalReferenceCode) {
-
-		return wikiPagePersistence.fetchByG_ERC(groupId, externalReferenceCode);
-	}
-
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link #fetchWikiPageByExternalReferenceCode(long, String)}
-	 */
-	@Deprecated
-	@Override
-	public WikiPage fetchWikiPageByReferenceCode(
-		long groupId, String externalReferenceCode) {
-
-		return fetchWikiPageByExternalReferenceCode(
-			groupId, externalReferenceCode);
-	}
-
-	/**
-	 * Returns the wiki page with the matching external reference code and group.
-	 *
-	 * @param groupId the primary key of the group
-	 * @param externalReferenceCode the wiki page's external reference code
-	 * @return the matching wiki page
-	 * @throws PortalException if a matching wiki page could not be found
-	 */
-	@Override
-	public WikiPage getWikiPageByExternalReferenceCode(
-			long groupId, String externalReferenceCode)
-		throws PortalException {
-
-		return wikiPagePersistence.findByG_ERC(groupId, externalReferenceCode);
 	}
 
 	/**

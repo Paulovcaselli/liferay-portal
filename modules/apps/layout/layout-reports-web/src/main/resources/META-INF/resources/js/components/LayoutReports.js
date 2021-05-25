@@ -111,10 +111,10 @@ export default function LayoutReports({eventTriggered}) {
 	);
 
 	useEffect(() => {
-		if (isPanelStateOpen) {
+		if (isPanelStateOpen && !data && !loading) {
 			getData(layoutReportsDataURL);
 		}
-	}, [isPanelStateOpen, layoutReportsDataURL, getData]);
+	}, [data, isPanelStateOpen, layoutReportsDataURL, loading, getData]);
 
 	useEffect(() => {
 		if (eventTriggered && !data) {
@@ -137,32 +137,21 @@ export default function LayoutReports({eventTriggered}) {
 
 	return (
 		<>
-			{data?.validConnection &&
-				error &&
-				(error?.message ? (
-					<ClayAlert displayType="danger" variant="stripe">
-						{error.message}
-
-						<ClayAlert.Footer>
-							<ClayButton.Group>
-								<ClayButton
-									alert
-									onClick={onRelaunchButtonClick}
-								>
-									{error.buttonTitle}
-								</ClayButton>
-							</ClayButton.Group>
-						</ClayAlert.Footer>
-					</ClayAlert>
-				) : (
-					<ClayAlert displayType="danger" variant="stripe">
-						{error}
-					</ClayAlert>
-				))}
+			{data?.validConnection && error && (
+				<ErrorAlert error={error} onRelaunch={onRelaunchButtonClick} />
+			)}
 
 			<div className="c-p-3">
+				{data && !error && (
+					<BasicInformation
+						defaultLanguageId={data.defaultLanguageId}
+						pageURLs={data.pageURLs}
+						selectedLanguageId={languageId}
+					/>
+				)}
+
 				{loading ? (
-					<div className="text-secondary">
+					<div className="c-my-4 text-secondary">
 						{Liferay.Language.get(
 							'connecting-with-google-pagespeed'
 						)}
@@ -170,22 +159,12 @@ export default function LayoutReports({eventTriggered}) {
 					</div>
 				) : (
 					data &&
-					!error && (
-						<>
-							<BasicInformation
-								defaultLanguageId={data.defaultLanguageId}
-								pageURLs={data.pageURLs}
-								selectedLanguageId={languageId}
-							/>
-
-							{data.validConnection &&
-							data?.layoutReportsIssues ? (
-								<LayoutReportsIssuesList />
-							) : (
-								<EmptyLayoutReports />
-							)}
-						</>
-					)
+					!error &&
+					(data.validConnection && data?.layoutReportsIssues ? (
+						<LayoutReportsIssuesList />
+					) : (
+						<EmptyLayoutReports />
+					))
 				)}
 			</div>
 		</>
@@ -194,4 +173,28 @@ export default function LayoutReports({eventTriggered}) {
 
 LayoutReports.propTypes = {
 	eventTriggered: PropTypes.bool.isRequired,
+};
+
+const ErrorAlert = ({error, onRelaunch}) =>
+	error?.message ? (
+		<ClayAlert displayType="danger" variant="stripe">
+			{error.message}
+
+			<ClayAlert.Footer>
+				<ClayButton.Group>
+					<ClayButton alert onClick={onRelaunch}>
+						{error.buttonTitle}
+					</ClayButton>
+				</ClayButton.Group>
+			</ClayAlert.Footer>
+		</ClayAlert>
+	) : (
+		<ClayAlert displayType="danger" variant="stripe">
+			{error}
+		</ClayAlert>
+	);
+
+ErrorAlert.propTypes = {
+	error: PropTypes.object.isRequired,
+	onRelaunch: PropTypes.func.isRequired,
 };

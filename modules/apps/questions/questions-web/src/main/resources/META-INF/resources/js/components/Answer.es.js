@@ -14,6 +14,7 @@
 
 import ClayButton from '@clayui/button';
 import ClayIcon from '@clayui/icon';
+import ClayLabel from '@clayui/label';
 import classnames from 'classnames';
 import {useMutation} from 'graphql-hooks';
 import React, {useCallback, useEffect, useState} from 'react';
@@ -109,6 +110,13 @@ export default withRouter(
 									dateModified,
 								])}
 							</span>
+							{answer.status && answer.status !== 'approved' && (
+								<span className="c-ml-2 text-secondary">
+									<ClayLabel displayType="info">
+										{answer.status}
+									</ClayLabel>
+								</span>
+							)}
 							<div className="c-mt-2">
 								<ArticleBodyRenderer {...answer} />
 							</div>
@@ -121,19 +129,22 @@ export default withRouter(
 										>
 											{answer.actions[
 												'reply-to-message'
-											] && (
-												<ClayButton
-													className="text-reset"
-													displayType="unstyled"
-													onClick={() =>
-														setShowNewComment(true)
-													}
-												>
-													{Liferay.Language.get(
-														'reply'
-													)}
-												</ClayButton>
-											)}
+											] &&
+												answer.status !== 'pending' && (
+													<ClayButton
+														className="text-reset"
+														displayType="unstyled"
+														onClick={() =>
+															setShowNewComment(
+																true
+															)
+														}
+													>
+														{Liferay.Language.get(
+															'reply'
+														)}
+													</ClayButton>
+												)}
 
 											{answer.actions.delete && (
 												<>

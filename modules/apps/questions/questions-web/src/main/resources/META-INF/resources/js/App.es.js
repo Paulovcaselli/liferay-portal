@@ -33,10 +33,16 @@ export default (props) => {
 
 	const packageName = props.npmResolvedPackageName;
 
+	let path = props.historyRouterBasePath;
+
+	if (path && props.i18nPath) {
+		path = props.i18nPath + path;
+	}
+
 	return (
 		<AppContextProvider {...props}>
 			<ClientContext.Provider value={client}>
-				<Router basename={props.historyRouterBasePath}>
+				<Router basename={path}>
 					<ErrorBoundary>
 						<div>
 							<NavigationBar />
@@ -69,7 +75,7 @@ export default (props) => {
 										/>
 									)}
 									exact
-									path="/question/:questionId"
+									path="/questions/question/:questionId"
 								/>
 								<Route
 									component={(props) => (
@@ -79,7 +85,7 @@ export default (props) => {
 										/>
 									)}
 									exact
-									path="/activity/:creatorId"
+									path="/questions/activity/:creatorId"
 								/>
 								<Route
 									component={(props) => (
@@ -89,7 +95,7 @@ export default (props) => {
 										/>
 									)}
 									exact
-									path="/subscriptions/:creatorId"
+									path="/questions/subscriptions/:creatorId"
 								/>
 								<Route
 									component={(props) => (

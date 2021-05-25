@@ -243,6 +243,9 @@ public interface WikiPageLocalService
 	public <T> T dslQuery(DSLQuery dslQuery);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int dslQueryCount(DSLQuery dslQuery);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DynamicQuery dynamicQuery();
 
 	/**
@@ -320,6 +323,19 @@ public interface WikiPageLocalService
 	public WikiPage fetchLatestPage(
 		long nodeId, String title, int status, boolean preferApproved);
 
+	/**
+	 * Returns the latest wiki page matching the group and the external
+	 * reference code
+	 *
+	 * @param groupId the primary key of the group
+	 * @param externalReferenceCode the wiki page external reference code
+	 * @return the latest matching wiki page, or <code>null</code> if no
+	 matching wiki page could be found
+	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public WikiPage fetchLatestPageByExternalReferenceCode(
+		long groupId, String externalReferenceCode);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WikiPage fetchPage(long resourcePrimKey);
 
@@ -331,25 +347,6 @@ public interface WikiPageLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WikiPage fetchWikiPage(long pageId);
-
-	/**
-	 * Returns the wiki page with the matching external reference code and group.
-	 *
-	 * @param groupId the primary key of the group
-	 * @param externalReferenceCode the wiki page's external reference code
-	 * @return the matching wiki page, or <code>null</code> if a matching wiki page could not be found
-	 */
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WikiPage fetchWikiPageByExternalReferenceCode(
-		long groupId, String externalReferenceCode);
-
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link #fetchWikiPageByExternalReferenceCode(long, String)}
-	 */
-	@Deprecated
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WikiPage fetchWikiPageByReferenceCode(
-		long groupId, String externalReferenceCode);
 
 	/**
 	 * Returns the wiki page matching the UUID and group.
@@ -428,6 +425,20 @@ public interface WikiPageLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WikiPage getLatestPage(
 			long nodeId, String title, int status, boolean preferApproved)
+		throws PortalException;
+
+	/**
+	 * Returns the latest wiki page matching the group and the external
+	 * reference code
+	 *
+	 * @param groupId the primary key of the group
+	 * @param externalReferenceCode the wiki page external reference code
+	 * @return the latest matching wiki page
+	 * @throws PortalException if a portal exception occurred
+	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public WikiPage getLatestPageByExternalReferenceCode(
+			long groupId, String externalReferenceCode)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -614,19 +625,6 @@ public interface WikiPageLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WikiPage getWikiPage(long pageId) throws PortalException;
-
-	/**
-	 * Returns the wiki page with the matching external reference code and group.
-	 *
-	 * @param groupId the primary key of the group
-	 * @param externalReferenceCode the wiki page's external reference code
-	 * @return the matching wiki page
-	 * @throws PortalException if a matching wiki page could not be found
-	 */
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WikiPage getWikiPageByExternalReferenceCode(
-			long groupId, String externalReferenceCode)
-		throws PortalException;
 
 	/**
 	 * Returns the wiki page matching the UUID and group.
