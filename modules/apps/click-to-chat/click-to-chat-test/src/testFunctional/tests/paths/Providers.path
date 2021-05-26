@@ -45,7 +45,7 @@
 </tr>
 <tr>
 	<td>CHAT_TAWKTO</td>
-	<td>//iframe[contains(@title, 'chat widget')]</td>
+	<td>//div[contains(@style, 'display: block !important')]</td>
 	<td></td>
 </tr>
 <tr>
