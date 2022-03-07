@@ -254,17 +254,17 @@ definition {
 		task ("Configure IdP Connections") {
 
 			//var entityId = PropsUtil.get("okta.cp.entityId");
-			//var metadataUrl = PropsUtil.get("okta.cp.metadataUrl");
+			//var metadataURL = PropsUtil.get("okta.cp.metadataURL");
 
 			var entityId = "http://www.okta.com/exk158id544C4j3KK0h8";
-			var metadataUrl = "https://provisioning.liferay.com/documents/20124/139691/customer-2.0-local-metadata.xml/eeac6c00-20b9-dafd-3059-4151d02d487b";
+			var metadataURL = "https://provisioning.liferay.com/documents/20124/139691/customer-2.0-local-metadata.xml/eeac6c00-20b9-dafd-3059-4151d02d487b";
 
 			SAMLNavigation.gotoIdentityProviderConnections();
 
 			CustomerPortal.addIdPCForCustomerPortal(
 				idpAttributeMapping = "emailAddress,UUID,screenName,lastName,firstName",
 				idpEntityId = "${entityId}",
-				idpMetadataURL = "${metadataUrl}",
+				idpMetadataURL = "${metadataURL}",
 				idpNameId = "CP2",
 				nameIdentifierFormat = "Unspecified");
 
