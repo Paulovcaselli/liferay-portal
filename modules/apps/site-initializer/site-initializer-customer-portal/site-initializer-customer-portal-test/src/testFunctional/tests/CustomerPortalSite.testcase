@@ -36,83 +36,6 @@ definition {
 			value = "Test Test");
 	}
 
-	@description = "LPS-146215 - Verify if Customer Portal can be created"
-	@priority = "5"
-	test CanCP20BeCreated {
-		ApplicationsMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		LexiconEntry.gotoAdd();
-
-		LexiconCard.clickCard(card = "Customer Portal");
-
-		SelectFrame(
-			key_title = "Add Site",
-			locator1 = "IFrame#MODAL_ANY");
-
-		PortletEntry.inputName(name = "Customer Portal");
-
-		Click(locator1 = "Button#ADD");
-
-		AssertElementPresent(locator1 = "Raylife#SAVE_LOADING_ANIMATION");
-
-		while (IsElementPresent(locator1 = "Raylife#SAVE_LOADING_ANIMATION")) {
-			Pause(locator1 = "1500");
-		}
-
-		Refresh();
-
-		WaitForElementPresent(
-			key_itemName = "Site Configuration",
-			locator1 = "ListGroupItem#ITEM_TEXT");
-
-		Click(
-			key_itemName = "Site Configuration",
-			locator1 = "ListGroupItem#ITEM_TEXT");
-
-		AssertTextEquals(
-			locator1 = "SitesEditSite#DETAILS_NAME",
-			value1 = "Customer Portal");
-	}
-
-	@description = "LPS-146220 - Verify if when Customer Portal is created, Objects will be created for it as well"
-	@priority = "4"
-	test ObjectsAreCreatedForCP20 {
-		CustomerPortal.createCPSite(siteName = "Customer Portal");
-
-		ObjectAdmin.openObjectAdmin();
-
-		AssertElementPresent(
-			locator1 = "CustomerPortalSite#OBJECTS_TABLE",
-			value = "Koroneiki Account");
-	}
-
-	@description = "LPS-146219 - Verify if when Customer Portal is created, Remote Apps will be created for it as well"
-	@priority = "4"
-	test RemoteAppsAreCreatedForCP20 {
-		CustomerPortal.createCPSite(siteName = "Customer Portal");
-
-		RemoteApps.goToRemoteAppsPortlet();
-
-		AssertElementPresent(
-			locator1 = "CustomerPortalSite#OBJECTS_TABLE",
-			value = "Customer Portal");
-	}
-
-	@description = "LPS-146216 - Verify if when Customer Portal is created, Tests Accounts will be created for it as well"
-	@priority = "4"
-	test TestsAccountsAreCreatedForCP20 {
-		CustomerPortal.createCPSite(siteName = "Customer Portal");
-
-		Accounts.openAccountsAdmin();
-
-		AssertElementPresent(
-			locator1 = "CustomerPortalSite#ACCOUNTS_TABLE",
-			value = "Test Account 01");
-	}
-
 	@description = "LPS-148456 - Verify if its possible login in Okta, Configure SAML Admin and create CP2.0"
 	@priority = "5"
 	test CanConnectWithOkta {
@@ -246,6 +169,47 @@ definition {
 
 		Click(locator1 = "Button#ADD");
 
+		AssertElementPresent(locator1 = "Raylife#SAVE_LOADING_ANIMATION");
+
+		while (IsElementPresent(locator1 = "Raylife#SAVE_LOADING_ANIMATION")) {
+			Pause(locator1 = "1500");
+		}
+
+		Refresh();
+
+		WaitForElementPresent(
+			key_itemName = "Site Configuration",
+			locator1 = "ListGroupItem#ITEM_TEXT");
+
+		Click(
+			key_itemName = "Site Configuration",
+			locator1 = "ListGroupItem#ITEM_TEXT");
+
+		AssertTextEquals(
+			locator1 = "SitesEditSite#DETAILS_NAME",
+			value1 = "Customer Portal");
+	}
+
+	@description = "LPS-146215 - Verify if Customer Portal can be created"
+	@priority = "5"
+	test CanCP20BeCreated {
+		ApplicationsMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		LexiconEntry.gotoAdd();
+
+		LexiconCard.clickCard(card = "Customer Portal");
+
+		SelectFrame(
+			key_title = "Add Site",
+			locator1 = "IFrame#MODAL_ANY");
+
+		PortletEntry.inputName(name = "Customer Portal");
+
+		Click(locator1 = "Button#ADD");
+
 		AssertElementPresent(locator1 = "Button#ADD_DISABLED");
 
 		while (IsElementPresent(locator1 = "Button#ADD_DISABLED")) {
@@ -279,6 +243,18 @@ definition {
 			value = "Koroneiki Account");
 	}
 
+	@description = "LPS-146220 - Verify if when Customer Portal is created, Objects will be created for it as well"
+	@priority = "4"
+	test ObjectsAreCreatedForCP20 {
+		CustomerPortal.createCPSite(siteName = "Customer Portal");
+
+		ObjectAdmin.openObjectAdmin();
+
+		AssertElementPresent(
+			locator1 = "CustomerPortalSite#OBJECTS_TABLE",
+			value = "Koroneiki Account");
+	}
+
 	@description = "LPS-146219 - Verify if when Customer Portal is created, Remote Apps will be created for it as well"
 	@priority = "4"
 	test RemoteAppsAreCreatedForCP20 {
@@ -289,6 +265,30 @@ definition {
 		AssertElementPresent(
 			locator1 = "CustomerPortalSite#OBJECTS_TABLE",
 			value = "Customer Portal");
+	}
+
+	@description = "LPS-146219 - Verify if when Customer Portal is created, Remote Apps will be created for it as well"
+	@priority = "4"
+	test RemoteAppsAreCreatedForCP20 {
+		CustomerPortal.createCPSite(siteName = "Customer Portal");
+
+		RemoteApps.goToRemoteAppsPortlet();
+
+		AssertElementPresent(
+			locator1 = "CustomerPortalSite#OBJECTS_TABLE",
+			value = "Customer Portal");
+	}
+
+	@description = "LPS-146216 - Verify if when Customer Portal is created, Tests Accounts will be created for it as well"
+	@priority = "4"
+	test TestsAccountsAreCreatedForCP20 {
+		CustomerPortal.createCPSite(siteName = "Customer Portal");
+
+		Accounts.openAccountsAdmin();
+
+		AssertElementPresent(
+			locator1 = "CustomerPortalSite#ACCOUNTS_TABLE",
+			value = "Test Account 01");
 	}
 
 	@description = "LPS-146216 - Verify if when Customer Portal is created, Tests Accounts will be created for it as well"
