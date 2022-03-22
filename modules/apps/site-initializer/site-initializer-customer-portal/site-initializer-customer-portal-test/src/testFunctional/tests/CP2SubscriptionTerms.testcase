@@ -1,0 +1,199 @@
+@component-name = "portal-solutions"
+definition {
+
+    property custom.properties = "javascript.single.page.application.enabled=false${line.separator}jsonws.web.service.paths.excludes=";
+	property portal.release = "false";
+	property portal.upstream = "false";
+	property testray.main.component.name = "Customer Portal";
+
+	setUp {
+		TestCase.setUpPortalInstance();
+
+		User.firstLoginPG();
+
+        CustomerPortal.setUpForCP20();
+
+        CustomerPortal.createCPSite(siteName = "Customer Portal");
+	}
+
+	tearDown {
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
+
+        CustomerPortal.tearDownForOktaAndSAML();
+
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
+		}
+	}
+
+	@description = "LPS-144449 - Verify if when the user clicks on a subscription card its a pop-up showing the detailed terms."
+	@priority = "4"
+	test ClickingSubscriptionCardPopUpShows {
+        task ("Assert pop-up") {
+        ApplicationsMenu.gotoSite(key_site = "Customer Portal");
+
+        Click(
+			locator1 = "CP2LiferayContact#PROJECT_CARD",
+			title = "Test Account 01");
+
+        Click(locator1 = "//div[contains(@class, 'cards-subscription')]//h5[contains(., 'Non-Production')]");
+
+        AssertElementPresent(locator1 = "//div[contains(@class, 'flex-row')]//h2[contains(., 'Non-Production')]");
+        }
+
+	}
+
+	@description = "LPS-144450 - Verify if the title is composed of the product group name."
+	@priority = "5"
+	test ProductGroupItsOnTitle {
+
+		// TODO LPS-143373 Verify if Liferay Contact displays Liferay Contact's name.
+
+	}
+
+	@description = "LPS-144451 - Verify if the title is composed of the subscription card name."
+	@priority = "4"
+	test SubscriptionCardItsOnTitle {
+
+		// TODO LPS-143374 Verify if Liferay Contact displays Liferay Contact's role.
+
+	}
+
+	@description = "LPS-144452 - Check if when the user clicks out of the modal it closes."
+	@priority = "3"
+	test ModalCloseIfClickedOut {
+
+		// TODO LPS-143375 Verify if Liferay Contact displays Liferay Contact's email.
+
+	}
+
+	@description = "LPS-144453 - Check if when the user clicks the modal's close button it closes."
+	@priority = "5"
+	test IsModalCloseButtonWorking {
+
+		// TODO LPS-143373 Verify if Liferay Contact displays Liferay Contact's name.
+
+	}
+
+	@description = "LPS-144454 - Verify there is value under the Start - End Date column."
+	@priority = "4"
+	test ValueUnderStartEndDateColumn {
+
+		// TODO LPS-143374 Verify if Liferay Contact displays Liferay Contact's role.
+
+	}
+
+	@description = "LPS-144456 - Verify there is value under the Provision column."
+	@priority = "4"
+	test ValueUnderProvisionColumn {
+
+		// TODO LPS-143375 Verify if Liferay Contact displays Liferay Contact's email.
+
+	}
+
+	@description = "LPS-144457 - Verify there is value under the Purchase column."
+	@priority = "4"
+	test ValueUnderPurchaseColumn {
+
+		// TODO LPS-143373 Verify if Liferay Contact displays Liferay Contact's name.
+
+	}
+
+	@description = "LPS-144459 - Verify there is value under the Instance Sizing column."
+	@priority = "4"
+	test ValueUnderInstanceSizingColumn {
+
+		// TODO LPS-143374 Verify if Liferay Contact displays Liferay Contact's role.
+
+	}
+
+	@description = "LPS-144463 - Verify there is value under the Status column."
+	@priority = "4"
+	test ValueUnderStatusColumn {
+
+		// TODO LPS-143375 Verify if Liferay Contact displays Liferay Contact's email.
+
+	}
+
+	@description = "LPS-144464 - Verify that the Provisioned column appears for Commerce."
+	@priority = "3"
+	test ProvisionedColumnAppearsForCommerce {
+
+		// TODO LPS-143373 Verify if Liferay Contact displays Liferay Contact's name.
+
+	}
+
+	@description = "LPS-144466 - Verify that the Provisioned column appears for DXP."
+	@priority = "3"
+	test ProvisionedColumnAppearsForDXP {
+
+		// TODO LPS-143374 Verify if Liferay Contact displays Liferay Contact's role.
+
+	}
+
+	@description = "LPS-144467 - Verify that the Provisioned column appears for Portal."
+	@priority = "3"
+	test ProvisionedColumnAppearsForPortal {
+
+		// TODO LPS-143375 Verify if Liferay Contact displays Liferay Contact's email.
+
+	}
+
+	@description = "LPS-144468 - Verify that the Provisioned column appears for Social Office."
+	@priority = "3"
+	test ProvisionedColumnAppearsForSocialOffice {
+
+		// TODO LPS-143373 Verify if Liferay Contact displays Liferay Contact's name.
+
+	}
+
+	@description = "LPS-144470 - Verify that the Provisioned column does not appear for DXP Cloud."
+	@priority = "3"
+	test ProvisionedColumnAppearsForDXPCloud {
+
+		// TODO LPS-143374 Verify if Liferay Contact displays Liferay Contact's role.
+
+	}
+
+	@description = "LPS-144471 - Verify that the Provisioned column does not appear for Commerce."
+	@priority = "3"
+	test ProvisionedColumnDontAppearsForCommerce {
+
+		// TODO LPS-143375 Verify if Liferay Contact displays Liferay Contact's email.
+
+	}
+
+	@description = "LPS-144475 - Verify that the Provisioned column does not appear for Other."
+	@priority = "3"
+	test ProvisionedColumnDontAppearsForOther {
+
+		// TODO LPS-143373 Verify if Liferay Contact displays Liferay Contact's name.
+
+	}
+
+	@description = "LPS-144483 - Verify there if status Active shows up."
+	@priority = "2"
+	test IfActiveStatusShowsUp {
+
+		// TODO LPS-143374 Verify if Liferay Contact displays Liferay Contact's role.
+
+	}
+
+	@description = "LPS-144484 - Verify there if status Expired shows up."
+	@priority = "2"
+	test IfExpiredStatusShowsUp {
+
+		// TODO LPS-143375 Verify if Liferay Contact displays Liferay Contact's email.
+
+	}
+
+	@description = "LPS-144485 - Verify there if status Future shows up."
+	@priority = "2"
+	test IfFutureStatusShowsUp {
+
+		// TODO LPS-143373 Verify if Liferay Contact displays Liferay Contact's name.
+
+	}
+
+
+}
