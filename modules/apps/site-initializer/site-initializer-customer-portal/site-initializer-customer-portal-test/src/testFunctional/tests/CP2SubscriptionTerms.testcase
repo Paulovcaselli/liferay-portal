@@ -32,13 +32,25 @@ definition {
         task ("Assert pop-up") {
         ApplicationsMenu.gotoSite(key_site = "Customer Portal");
 
+		CustomerPortal.loginOktaToUpdateCP();
+
+        SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
+
+        Refresh();
+
         Click(
 			locator1 = "CP2LiferayContact#PROJECT_CARD",
 			title = "Test Account 01");
 
-        Click(locator1 = "//div[contains(@class, 'cards-subscription')]//h5[contains(., 'Non-Production')]");
+        Click(
+			cardName = "Non-Production",
+			locator1 = "CustomerPortalSite#CARD_NAME");
 
-        AssertElementPresent(locator1 = "//div[contains(@class, 'flex-row')]//h2[contains(., 'Non-Production')]");
+        AssertElementPresent(
+			modalTitle = "Non-Production",
+			locator1 = "CustomerPortalSite#MODAL_TITLE");
+
+		Click(locator1 = "CustomerPortalSite#CLOSE_MODAL_CARD");
         }
 
 	}

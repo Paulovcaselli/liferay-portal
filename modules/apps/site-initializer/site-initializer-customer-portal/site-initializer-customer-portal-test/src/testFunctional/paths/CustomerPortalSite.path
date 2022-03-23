@@ -40,6 +40,21 @@
 	<td>//input[contains(@id, 'okta-signin-submit')]</td>
 	<td></td>
 </tr>
+<tr>
+	<td>CARD_NAME</td>
+	<td>//div[contains(@class, 'cards-subscription')]//h5[contains(., '${cardName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MODAL_TITLE</td>
+	<td>//div[contains(@class, 'flex-row')]//h2[contains(., '${modalTitle}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CLOSE_MODAL_CARD</td>
+	<td>//button[contains(@aria-label, 'close')]</td>
+	<td></td>
+</tr>
 </tbody>
 </table>
 </body>
