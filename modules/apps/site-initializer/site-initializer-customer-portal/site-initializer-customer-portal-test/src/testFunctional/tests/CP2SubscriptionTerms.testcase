@@ -30,11 +30,9 @@ definition {
 	@priority = "4"
 	test ClickingSubscriptionCardPopUpShows {
 		task ("Assert pop-up") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -58,11 +56,9 @@ definition {
 	@priority = "3"
 	test IfActiveStatusShowsUp {
 		task ("Assert Status Active") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -92,11 +88,9 @@ definition {
 	@priority = "2"
 	test IfExpiredStatusShowsUp {
 		task ("Assert Status Expired") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -116,11 +110,9 @@ definition {
 	@priority = "2"
 	test IfFutureStatusShowsUp {
 		task ("Assert Status Future") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -158,11 +150,9 @@ definition {
 	@priority = "3"
 	test ModalCloseIfClickedOut {
 		task ("See if popup closes") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -198,11 +188,9 @@ definition {
 	@priority = "3"
 	test ProvisionedColumnAppearsForCommerce {
 		task ("See the Provisioned Column for Commerce") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -229,11 +217,9 @@ definition {
 	@priority = "3"
 	test ProvisionedColumnAppearsForDXP {
 		task ("See the Provisioned Column for DXP") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -272,11 +258,9 @@ definition {
 	@priority = "3"
 	test ProvisionedColumnAppearsForPortal {
 		task ("See the Provisioned Column for Portal") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -323,11 +307,9 @@ definition {
 	@priority = "3"
 	test ProvisionedColumnDontAppearsForOther {
 		task ("See if the Provisioned Column doesn't appear for Others") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
@@ -386,11 +368,9 @@ definition {
 	@priority = "4"
 	test ValueUnderStartEndDateColumn {
 		task ("See if exists a value under the column") {
+			CustomerPortal.loginOkta();
+
 			ApplicationsMenu.gotoSite(key_site = "Customer Portal");
-
-			CustomerPortal.loginOktaToUpdateCP();
-
-			SelectWindow(locator1 = "title=Home - Customer Portal - Liferay DXP");
 
 			Refresh();
 
